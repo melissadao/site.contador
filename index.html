@@ -1,1 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataformas Educacionais</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: space-around;
+            padding-top: 20px;
+        }
+        .container {
+            width: 30%;
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+        input[type="number"] {
+            width: 50px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Contador Regressivo -->
+    <div class="container">
+        <h2>Contagem Regressiva</h2>
+        <p>Digite um número para iniciar a contagem regressiva:</p>
+        <input type="number" id="contador" min="1" max="100" value="10">
+        <button onclick="contagemRegressiva()">Iniciar</button>
+        <div class="result" id="resultadoContador"></div>
+    </div>
 
+    <!-- Tabuada -->
+    <div class="container">
+        <h2>Tabuada</h2>
+        <input type="number" id="numeroTabuada" value="5">
+        <button onclick="calcularTabuada()">Calcular</button>
+        <div class="result" id="resultadoTabuada"></div>
+    </div>
+
+    <!-- Adivinhe o Número -->
+    <div class="container">
+        <h2>Jogo: Adivinhe o Número Secreto</h2>
+        <p>Tente adivinhar o número secreto entre 1 e 10!</p>
+        <input type="number" id="palpite" min="1" max="10">
+        <button onclick="adivinharNumero()">Enviar Palpite</button>
+        <div class="result" id="resultadoJogo"></div>
+    </div>
+
+    <script>
+        // Contagem Regressiva
+        function contagemRegressiva() {
+            let numero = document.getElementById("contador").value;
+            let resultado = document.getElementById("resultadoContador");
+            resultado.innerHTML = "";
+
+            while (numero >= 0) {
+                resultado.innerHTML += numero + "<br>";
+                numero--;
+            }
+
+            resultado.innerHTML += "Fim da contagem regressiva.";
+        }
+
+        // Tabuada
+        function calcularTabuada() {
+            let numero = document.getElementById("numeroTabuada").value;
+            let resultado = document.getElementById("resultadoTabuada");
+            resultado.innerHTML = "";
+
+            let i = 1;
+            while (i <= 10) {
+                resultado.innerHTML += ${numero} x ${i} = ${numero * i}<br>;
+                i++;
+            }
+
+            resultado.innerHTML += "Fim da tabuada.";
+        }
+
+        // Jogo: Adivinhe o Número
+        let numeroSecreto = Math.floor(Math.random() * 10) + 1;
+
+        function adivinharNumero() {
+            let palpite = document.getElementById("palpite").value;
+            let resultado = document.getElementById("resultadoJogo");
+
+            if (palpite == numeroSecreto) {
+                resultado.innerHTML = "Parabéns! Você acertou o número secreto!";
+                numeroSecreto = Math.floor(Math.random() * 10) + 1; // Gera novo número
+            } else {
+                resultado.innerHTML = "Tente novamente!";
+            }
+        }
+    </script>
+</body>
+</html>
